@@ -1,0 +1,34 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 320px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.search {
+  width: 240px;
+}
+
+.truncatedHint {
+  font-size: 12px;
+}
+
+.codePane {
+  flex: 1;
+  overflow: auto;
+  border-radius: 8px;
+}
+
+.searchHint {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+}

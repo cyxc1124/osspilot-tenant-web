@@ -1,0 +1,15 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.meta {
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.empty {
+  padding: 24px 0;
+  text-align: center;
+}

@@ -1,0 +1,123 @@
+.root {
+  min-height: 100vh;
+  background: var(--color-layout, #f4f6f9);
+}
+
+.sider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 2px 0 12px rgb(15 23 42 / 8%);
+}
+
+.main {
+  min-height: 100vh;
+  transition: margin-left 0.2s;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 56px;
+  padding: 0 16px;
+  border-bottom: 1px solid rgb(255 255 255 / 8%);
+}
+
+.brandIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #006eff;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.brandText {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 24px;
+  line-height: 56px;
+  border-bottom: 1px solid #e4e8ef;
+  background: rgb(255 255 255 / 88%);
+  backdrop-filter: blur(12px);
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #5c6370;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.trigger:hover {
+  background: #f0f2f6;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.userTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px 4px 4px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.userTrigger:hover {
+  background: #f0f2f6;
+}
+
+.avatar {
+  background: #006eff;
+}
+
+.userName {
+  color: #1a1d26;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.content {
+  padding: 24px 28px 32px;
+  min-height: calc(100vh - 56px);
+}

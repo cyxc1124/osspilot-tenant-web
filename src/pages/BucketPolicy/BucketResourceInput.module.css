@@ -1,0 +1,50 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tags {
+  width: 100%;
+}
+
+.presets {
+  width: 100%;
+}
+
+.pathRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .pathRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .prefix {
+    white-space: normal;
+    word-break: break-all;
+  }
+
+  .suffixInput {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+.prefix {
+  flex-shrink: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.suffixInput {
+  flex: 1;
+  min-width: 120px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}

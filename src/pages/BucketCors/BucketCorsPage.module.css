@@ -1,0 +1,61 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.headerActions {
+  justify-content: flex-end;
+}
+
+.title {
+  margin: 0 !important;
+}
+
+.subtitle {
+  margin: 4px 0 0 !important;
+}
+
+.alert {
+  margin-bottom: 0;
+}
+
+.rulesCard {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+}
+
+.ruleBlock {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.ruleBlock:last-child {
+  border-bottom: none;
+}
+
+.ruleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.emptyHint {
+  padding: 24px 0;
+  text-align: center;
+}
+
+.jsonPanel {
+  display: flex;
+  flex: 1;
+  min-height: 480px;
+}

@@ -1,0 +1,16 @@
+.panel {
+  margin-bottom: 24px;
+}
+
+.taskSection {
+  margin-top: 16px;
+}
+
+.taskHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: rgb(0 0 0 / 65%);
+  font-size: 13px;
+}

@@ -1,0 +1,69 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: calc(100vh - 160px);
+  min-height: 480px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.headerActions {
+  justify-content: flex-end;
+}
+
+.title {
+  margin: 0 !important;
+}
+
+.subtitle {
+  margin: 4px 0 0 !important;
+}
+
+.alert {
+  margin-bottom: 0;
+}
+
+.rulesCard {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+}
+
+.ruleBlock {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.ruleBlock:last-child {
+  border-bottom: none;
+}
+
+.ruleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.headerActions {
+  justify-content: flex-end;
+}
+
+.resourceSuggestAlert {
+  margin-bottom: 16px;
+}
+
+.resourceSuggestList {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.resourceSuggestList code {
+  font-size: 12px;
+}

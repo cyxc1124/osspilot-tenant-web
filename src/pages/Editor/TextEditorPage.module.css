@@ -1,0 +1,50 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px);
+  margin: -24px;
+  background: #1e1e1e;
+}
+
+.readonlyBanner {
+  flex-shrink: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 16px;
+  background: #252526;
+  border-bottom: 1px solid #3c3c3c;
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0 !important;
+  color: #cccccc !important;
+  font-weight: 500 !important;
+}
+
+.status {
+  color: #9cdcfe;
+  font-size: 13px;
+}
+
+.editorWrap {
+  flex: 1;
+  min-height: 0;
+}
+
+.loading,
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 24px;
+  background: #fff;
+}

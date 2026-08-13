@@ -1,0 +1,59 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meta {
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sectionLabel {
+  font-weight: 500;
+}
+
+.tempLinkTitle {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.linkInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.expires {
+  font-size: 12px;
+}
+
+.actions {
+  margin-top: 4px;
+}
+
+.emptyMeta {
+  color: var(--ant-color-text-tertiary);
+}

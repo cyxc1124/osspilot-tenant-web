@@ -1,0 +1,24 @@
+.page {
+  max-width: 1200px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin-top: 0 !important;
+  margin-bottom: 4px !important;
+}
+
+.subtitle {
+  margin-bottom: 0 !important;
+}
+
+.actions {
+  white-space: nowrap;
+}

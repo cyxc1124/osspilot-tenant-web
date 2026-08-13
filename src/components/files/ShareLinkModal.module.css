@@ -1,0 +1,63 @@
+.objectKey {
+  display: block;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #fafafa;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.linkCard {
+  border-radius: 8px;
+}
+
+.linkCard :global(.ant-card-body) {
+  padding: 12px 14px;
+}
+
+.linkMeta {
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgb(0 0 0 / 45%);
+  line-height: 1.6;
+}
+
+.linkToolbar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.linkInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.linkTags {
+  margin-top: 8px;
+}
+
+.createForm :global(.ant-form-item) {
+  margin-bottom: 16px;
+}
+
+.switchRow {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.switchRow :global(.ant-form-item) {
+  margin-bottom: 0;
+}

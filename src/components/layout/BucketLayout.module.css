@@ -1,0 +1,50 @@
+.layout {
+  display: flex;
+  min-height: 400px;
+  overflow: hidden;
+  border: 1px solid #e4e8ef;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.subNav {
+  flex-shrink: 0;
+  width: 220px;
+  padding: 16px 12px;
+  border-right: 1px solid #e4e8ef;
+  background: #f8fafc;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 8px 16px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: #5c6370;
+  font-size: 13px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.backLink:hover {
+  color: #006eff;
+  background: rgb(0 110 255 / 6%);
+}
+
+.bucketTitle {
+  margin: 0 8px 16px;
+  padding: 0 8px 16px;
+  border-bottom: 1px solid #e4e8ef;
+}
+
+.menu {
+  border-inline-end: none !important;
+  background: transparent !important;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 24px 28px;
+}

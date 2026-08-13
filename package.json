@@ -18,7 +18,7 @@
     "@tanstack/react-query": "^5.62.8",
     "@types/react-syntax-highlighter": "^15.5.13",
     "antd": "^6.4.5",
-    "react": "^18.3.1",
+    "react": "^19.2.8",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
     "react-syntax-highlighter": "^16.1.1",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.1",
-    "@types/react": "^18.3.18",
+    "@types/react": "^19.2.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
     "tailwindcss": "^4.3.1",

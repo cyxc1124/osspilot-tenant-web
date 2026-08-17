@@ -8,6 +8,7 @@ export interface LoginResponse {
   access_token: string;
   token_type: string;
   expires_in: number;
+  must_change_password: boolean;
 }
 
 export interface MeResponse {
@@ -17,6 +18,7 @@ export interface MeResponse {
   email: string | null;
   phone: string | null;
   role: string | null;
+  must_change_password: boolean;
 }
 
 export interface LogoutResponse {

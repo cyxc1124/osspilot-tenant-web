@@ -10,8 +10,9 @@ import {
   MenuUnfoldOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Avatar, Dropdown, Layout, Menu, type MenuProps } from 'antd';
+import { Alert, Avatar, Dropdown, Layout, Menu, type MenuProps } from 'antd';
 import { useT } from '../../i18n';
+import { mustChangePassword } from '../../lib/mustChangePassword';
 import { canViewAudit } from '../../lib/roles';
 import ChangePasswordModal from '../account/ChangePasswordModal';
 import LocaleSwitcher from '../LocaleSwitcher';
@@ -30,6 +31,9 @@ export default function AppLayout() {
   const navigate = useNavigate();
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
+  const refreshUser = useAuthStore((s) => s.refreshUser);
+  const clearMustChangePassword = useAuthStore((s) => s.clearMustChangePassword);
+  const mustChange = mustChangePassword(user);
   const showAuditMenu = canViewAudit(user);
 
   const inBucketScope = /^\/buckets\/[^/]+/.test(location.pathname);
@@ -101,7 +105,11 @@ export default function AppLayout() {
           mode="inline"
           selectedKeys={[selectedKey]}
           items={navItems}
-          onClick={({ key }) => navigate(String(key))}
+          onClick={({ key }) => {
+            if (!mustChange) {
+              navigate(String(key));
+            }
+          }}
         />
       </Sider>
 
@@ -128,10 +136,25 @@ export default function AppLayout() {
         </Header>
 
         <Content className={styles.content}>
-          <Outlet />
+          {mustChange ? (
+            <Alert type="info" showIcon message={t('account.mustChangeHint')} />
+          ) : (
+            <Outlet />
+          )}
         </Content>
       </Layout>
-      <ChangePasswordModal open={passwordOpen} onClose={() => setPasswordOpen(false)} />
+      <ChangePasswordModal
+        open={mustChange || passwordOpen}
+        forced={mustChange}
+        onClose={() => setPasswordOpen(false)}
+        onLogout={() => {
+          void logout().then(() => navigate('/login', { replace: true }));
+        }}
+        onChanged={() => {
+          clearMustChangePassword();
+          void refreshUser().catch(() => undefined);
+        }}
+      />
     </Layout>
   );
 }

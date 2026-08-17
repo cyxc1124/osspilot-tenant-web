@@ -4,10 +4,14 @@ import { Form, Input, Modal, message } from 'antd';
 import { changePassword } from '../../api/auth';
 import { ApiError } from '../../api/client';
 import { useT } from '../../i18n';
+import LocaleSwitcher from '../LocaleSwitcher';
 
 interface ChangePasswordModalProps {
   open: boolean;
   onClose: () => void;
+  onChanged?: () => void;
+  onLogout?: () => void;
+  forced?: boolean;
 }
 
 interface FormValues {
@@ -16,7 +20,13 @@ interface FormValues {
   confirm_password: string;
 }
 
-export default function ChangePasswordModal({ open, onClose }: ChangePasswordModalProps) {
+export default function ChangePasswordModal({
+  open,
+  onClose,
+  onChanged,
+  onLogout,
+  forced = false,
+}: ChangePasswordModalProps) {
   const t = useT();
   const [form] = Form.useForm<FormValues>();
 
@@ -34,6 +44,7 @@ export default function ChangePasswordModal({ open, onClose }: ChangePasswordMod
       }),
     onSuccess: () => {
       message.success(t('account.passwordChanged'));
+      onChanged?.();
       onClose();
     },
     onError: (err: Error) => {
@@ -43,13 +54,24 @@ export default function ChangePasswordModal({ open, onClose }: ChangePasswordMod
 
   return (
     <Modal
-      title={t('account.changePassword')}
+      title={forced ? t('account.mustChangeTitle') : t('account.changePassword')}
       open={open}
-      onCancel={onClose}
+      onCancel={forced ? onLogout : onClose}
       onOk={() => form.submit()}
+      okText={t('account.changePassword')}
+      cancelText={forced ? t('nav.logout') : undefined}
       confirmLoading={mutation.isPending}
       destroyOnClose
+      closable={!forced}
+      maskClosable={!forced}
+      keyboard={!forced}
     >
+      {forced ? (
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+          <p style={{ margin: 0 }}>{t('account.mustChangeHint')}</p>
+          <LocaleSwitcher />
+        </div>
+      ) : null}
       <Form
         form={form}
         layout="vertical"

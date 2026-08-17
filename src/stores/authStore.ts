@@ -17,6 +17,7 @@ interface AuthState {
   login: (username: string, password: string, remember: boolean) => Promise<void>;
   logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
+  clearMustChangePassword: () => void;
   clearSession: () => void;
 }
 
@@ -81,5 +82,12 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   refreshUser: async () => {
     const user = await authApi.fetchMe();
     set({ user });
+  },
+
+  clearMustChangePassword: () => {
+    const user = get().user;
+    if (user?.must_change_password) {
+      set({ user: { ...user, must_change_password: false } });
+    }
   },
 }));

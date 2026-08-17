@@ -4,11 +4,13 @@ import { Form, Input, Modal, message } from 'antd';
 import { changePassword } from '../../api/auth';
 import { ApiError } from '../../api/client';
 import { useT } from '../../i18n';
+import LocaleSwitcher from '../LocaleSwitcher';
 
 interface ChangePasswordModalProps {
   open: boolean;
   onClose: () => void;
-  onChanged?: () => void | Promise<void>;
+  onChanged?: () => void;
+  onLogout?: () => void;
   forced?: boolean;
 }
 
@@ -22,6 +24,7 @@ export default function ChangePasswordModal({
   open,
   onClose,
   onChanged,
+  onLogout,
   forced = false,
 }: ChangePasswordModalProps) {
   const t = useT();
@@ -39,9 +42,9 @@ export default function ChangePasswordModal({
         old_password: values.old_password,
         new_password: values.new_password,
       }),
-    onSuccess: async () => {
+    onSuccess: () => {
       message.success(t('account.passwordChanged'));
-      await onChanged?.();
+      onChanged?.();
       onClose();
     },
     onError: (err: Error) => {
@@ -53,16 +56,22 @@ export default function ChangePasswordModal({
     <Modal
       title={forced ? t('account.mustChangeTitle') : t('account.changePassword')}
       open={open}
-      onCancel={forced ? undefined : onClose}
+      onCancel={forced ? onLogout : onClose}
       onOk={() => form.submit()}
+      okText={t('account.changePassword')}
+      cancelText={forced ? t('nav.logout') : undefined}
       confirmLoading={mutation.isPending}
       destroyOnClose
       closable={!forced}
       maskClosable={!forced}
       keyboard={!forced}
-      cancelButtonProps={forced ? { style: { display: 'none' } } : undefined}
     >
-      {forced ? <p>{t('account.mustChangeHint')}</p> : null}
+      {forced ? (
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+          <p style={{ margin: 0 }}>{t('account.mustChangeHint')}</p>
+          <LocaleSwitcher />
+        </div>
+      ) : null}
       <Form
         form={form}
         layout="vertical"

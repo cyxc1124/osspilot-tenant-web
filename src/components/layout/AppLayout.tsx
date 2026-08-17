@@ -32,6 +32,7 @@ export default function AppLayout() {
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
   const refreshUser = useAuthStore((s) => s.refreshUser);
+  const clearMustChangePassword = useAuthStore((s) => s.clearMustChangePassword);
   const mustChange = mustChangePassword(user);
   const showAuditMenu = canViewAudit(user);
 
@@ -146,7 +147,13 @@ export default function AppLayout() {
         open={mustChange || passwordOpen}
         forced={mustChange}
         onClose={() => setPasswordOpen(false)}
-        onChanged={() => refreshUser()}
+        onLogout={() => {
+          void logout().then(() => navigate('/login', { replace: true }));
+        }}
+        onChanged={() => {
+          clearMustChangePassword();
+          void refreshUser().catch(() => undefined);
+        }}
       />
     </Layout>
   );

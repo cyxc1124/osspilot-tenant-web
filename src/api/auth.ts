@@ -15,6 +15,7 @@ function normalizeMeResponse(raw: LegacyMeResponse): MeResponse {
     email: raw.email,
     phone: raw.phone,
     role,
+    must_change_password: Boolean(raw.must_change_password),
   };
 }
 

@@ -4,10 +4,14 @@ import { Form, Input, Modal, message } from 'antd';
 import { changePassword } from '../../api/auth';
 import { ApiError } from '../../api/client';
 import { useT } from '../../i18n';
+import LocaleSwitcher from '../LocaleSwitcher';
 
 interface ChangePasswordModalProps {
   open: boolean;
   onClose: () => void;
+  onChanged?: () => void;
+  onLogout?: () => void;
+  forced?: boolean;
 }
 
 interface FormValues {
@@ -16,7 +20,16 @@ interface FormValues {
   confirm_password: string;
 }
 
-export default function ChangePasswordModal({ open, onClose }: ChangePasswordModalProps) {
+// ponytail: antd Input.Password 显隐按钮默认 tabIndex=0，会截走标签点击和 Tab；点图标仍可用。
+const passwordToggle = { tabIndex: -1 } as const;
+
+export default function ChangePasswordModal({
+  open,
+  onClose,
+  onChanged,
+  onLogout,
+  forced = false,
+}: ChangePasswordModalProps) {
   const t = useT();
   const [form] = Form.useForm<FormValues>();
 
@@ -34,6 +47,7 @@ export default function ChangePasswordModal({ open, onClose }: ChangePasswordMod
       }),
     onSuccess: () => {
       message.success(t('account.passwordChanged'));
+      onChanged?.();
       onClose();
     },
     onError: (err: Error) => {
@@ -43,13 +57,24 @@ export default function ChangePasswordModal({ open, onClose }: ChangePasswordMod
 
   return (
     <Modal
-      title={t('account.changePassword')}
+      title={forced ? t('account.mustChangeTitle') : t('account.changePassword')}
       open={open}
-      onCancel={onClose}
+      onCancel={forced ? onLogout : onClose}
       onOk={() => form.submit()}
+      okText={t('account.changePassword')}
+      cancelText={forced ? t('nav.logout') : undefined}
       confirmLoading={mutation.isPending}
       destroyOnClose
+      closable={!forced}
+      maskClosable={!forced}
+      keyboard={!forced}
     >
+      {forced ? (
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+          <p style={{ margin: 0 }}>{t('account.mustChangeHint')}</p>
+          <LocaleSwitcher />
+        </div>
+      ) : null}
       <Form
         form={form}
         layout="vertical"
@@ -61,7 +86,7 @@ export default function ChangePasswordModal({ open, onClose }: ChangePasswordMod
           label={t('account.currentPassword')}
           rules={[{ required: true, message: t('account.currentPasswordRequired') }]}
         >
-          <Input.Password autoComplete="current-password" />
+          <Input.Password autoComplete="current-password" visibilityToggle={passwordToggle} />
         </Form.Item>
         <Form.Item
           name="new_password"
@@ -71,7 +96,7 @@ export default function ChangePasswordModal({ open, onClose }: ChangePasswordMod
             { min: 8, message: t('account.passwordMinLength') },
           ]}
         >
-          <Input.Password autoComplete="new-password" />
+          <Input.Password autoComplete="new-password" visibilityToggle={passwordToggle} />
         </Form.Item>
         <Form.Item
           name="confirm_password"
@@ -89,7 +114,7 @@ export default function ChangePasswordModal({ open, onClose }: ChangePasswordMod
             }),
           ]}
         >
-          <Input.Password autoComplete="new-password" />
+          <Input.Password autoComplete="new-password" visibilityToggle={passwordToggle} />
         </Form.Item>
       </Form>
     </Modal>

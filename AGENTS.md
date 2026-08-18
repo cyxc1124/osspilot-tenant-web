@@ -26,6 +26,10 @@ ci: 拆分检查并推镜像到 GHCR
 chore: 从 monorepo 拆出本仓
 ```
 
+## 发布
+
+功能 PR 先合进 `develop`。要发版本时：`develop` 开 PR 到 `main`，合并后再打 annotated tag 并 push。不要在 `develop` 上直接打发行 tag。只改 CI Action 不用打 tag。
+
 ## 实现
 
 - 对照 OssPilot `legacy/`（v0.6.0），不跟 API 每一片齐发。切流包：T1–T5。
